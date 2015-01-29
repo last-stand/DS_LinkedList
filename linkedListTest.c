@@ -244,3 +244,36 @@ void test_traverse_should_convert_string_to_upperCase_with_stringToUpper_functio
 	assertEqual(strcmp((char*)new_node->data,expected),0);
 	free(new_node);
 }
+
+void test_getElementAt_should_return_NULL_if_given_index_is_not_exist_in_list_of_INT(){
+	list_ptr = &list;
+	number = 10;
+	new_node = create_node(data);
+	new_node2 = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	assert(getElementAt(list,3)==NULL);
+	free(new_node);
+	free(new_node2);
+}
+
+void test_getElementAt_should_return_element_on_the_given_index_in_list_of_CHAR(){
+	char a = 'a', b = 'b', c = 'c';
+	Node_ptr new_node3;
+	list_ptr = &list;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	data = &c;
+	new_node3 = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	add_to_list(list_ptr, new_node3);
+	assert(*(char*)getElementAt(list,1)==b);
+	free(new_node);
+	free(new_node2);
+	free(new_node3);
+}
