@@ -272,7 +272,9 @@ void test_getElementAt_should_return_element_on_the_given_index_in_list_of_CHAR(
 	add_to_list(list_ptr, new_node);
 	add_to_list(list_ptr, new_node2);
 	add_to_list(list_ptr, new_node3);
+	assert(*(char*)getElementAt(list,0)==a);
 	assert(*(char*)getElementAt(list,1)==b);
+	assert(*(char*)getElementAt(list,2)==c);
 	free(new_node);
 	free(new_node2);
 	free(new_node3);
