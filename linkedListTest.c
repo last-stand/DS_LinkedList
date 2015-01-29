@@ -279,3 +279,47 @@ void test_getElementAt_should_return_element_on_the_given_index_in_list_of_CHAR(
 	free(new_node2);
 	free(new_node3);
 }
+
+void test_indexOf_should_return_minus_1_if_given_element_is_not_found_in_list(){
+	int num = 12;
+	list_ptr = &list;
+	number = 10;
+	new_node = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	assertEqual(indexOf(list,&num),-1);
+	free(new_node);
+}
+
+void test_indexOf_should_return_index_of_given_element_if_found_in_list_of_INT(){
+	list_ptr = &list;
+	number = 10;
+	new_node = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	assertEqual(indexOf(list,data),0);
+	free(new_node);
+}
+
+void test_indexOf_should_return_index_of_given_element_if_found_in_list_of_CHAR(){
+	char a = 'a', b = 'b', c = 'c',d = 'd';
+	Node_ptr new_node3;
+	list_ptr = &list;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	data = &c;
+	new_node3 = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	add_to_list(list_ptr, new_node3);
+	assertEqual(indexOf(list,&a),0);
+	assertEqual(indexOf(list,&b),1);
+	assertEqual(indexOf(list,&c),2);
+	assertEqual(indexOf(list,&d),-1);
+	free(new_node);
+	free(new_node2);
+	free(new_node3);
+}

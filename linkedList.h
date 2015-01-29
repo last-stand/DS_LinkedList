@@ -21,3 +21,4 @@ void *get_last_element(LinkedList list);
 typedef void (*Function)(void *data);
 void traverse(LinkedList, Function);
 void * getElementAt(LinkedList, int);
+int indexOf(LinkedList list, void *element);
