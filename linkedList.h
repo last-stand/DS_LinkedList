@@ -15,3 +15,8 @@ struct list
 
 Node * create_node(void *data);
 LinkedList createList(void);
+int add_to_list(LinkedList *,Node *);
+void *get_first_element(LinkedList list);
+void *get_last_element(LinkedList list);
+typedef void (*Function)(void *data);
+void traverse(LinkedList, Function);

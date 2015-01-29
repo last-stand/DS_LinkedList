@@ -16,3 +16,34 @@ LinkedList createList(void){
 	list.count = 0;
 	return list;
 };
+
+int add_to_list(LinkedList *list,Node *node){
+	if(list->head == NULL){
+		list->head = node;
+		list->tail = node;
+		list->count = 1;
+		return 1;
+	}
+	list->tail->next = node;
+	list->tail = node;
+	list->count += 1;
+	if(list->count > 0)
+		return 1;
+	return 0;
+};
+
+void *get_first_element(LinkedList list){
+	return list.head;
+};
+
+void *get_last_element(LinkedList list){
+	return list.tail;
+};
+
+void traverse(LinkedList list, Function fun){
+	Node_ptr walker = list.head;
+	while(walker != NULL){
+		 fun(walker->data);
+		 walker = walker->next;
+	}
+};
