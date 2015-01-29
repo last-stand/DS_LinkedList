@@ -20,3 +20,4 @@ void *get_first_element(LinkedList list);
 void *get_last_element(LinkedList list);
 typedef void (*Function)(void *data);
 void traverse(LinkedList, Function);
+void * getElementAt(LinkedList, int);

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
+#include <string.h>
 #include "expr_assert.h"
 #include "linkedList.h"
 
@@ -222,4 +223,24 @@ void test_traverse_should_convert_all_list_double_in_their_floor_value_with_myFl
 	free(new_node);
 	free(new_node2);
 	free(new_node3);
+}
+
+void stringToUpper(void* data){
+	int i, length = strlen(data);
+	for(i=0; i < length; i++){
+		((char*)data)[i] = (char)toupper(((char*)data)[i]);
+	}
+}
+
+void test_traverse_should_convert_string_to_upperCase_with_stringToUpper_function_for_STRING(){
+	char a[] = "Jungle Jungle baat chali hai";
+	char expected[] = "JUNGLE JUNGLE BAAT CHALI HAI";
+	list_ptr = &list;
+	data = a;
+	new_node = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	traverse(list,stringToUpper);
+	assertEqual(strcmp((char*)new_node->data,expected),0);
+	free(new_node);
 }
