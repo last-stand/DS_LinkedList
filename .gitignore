@@ -1,2 +1,6 @@
 linked_list_spikes.exe
 linked_list_spikes.o
+expr_assert.h
+linkedListTest.o
+linkedListTestRunner.exe
+linkedListTestRunner.c
