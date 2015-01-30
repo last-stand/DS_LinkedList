@@ -323,3 +323,93 @@ void test_indexOf_should_return_index_of_given_element_if_found_in_list_of_CHAR(
 	free(new_node2);
 	free(new_node3);
 }
+
+void test_deleteElementAt_should_return_NULL_if_given_index_is_not_in_list(){
+	list_ptr = &list;
+	number = 10;
+	new_node = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	assert(deleteElementAt(list_ptr,2)==NULL);
+	assert(list_ptr->count==1);
+	free(new_node);
+}
+
+void test_deleteElementAt_should_return_the_data_referenced_by_the_node_at_given_index_in_list(){
+	int a = 10, b = 20, c = 30, *result;
+	Node_ptr new_node3;
+	list_ptr = &list;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	data = &c;
+	new_node3 = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	add_to_list(list_ptr, new_node3);
+	result = deleteElementAt(list_ptr,1);
+	assert(*result==20);
+	assert(new_node->next == new_node3);
+	assert(list_ptr->count == 2);
+	free(new_node);
+	free(new_node2);
+	free(new_node3);
+}
+
+void test_deleteElementAt_should_set_next_node_as_head_in_list_if_index_is_0(){
+	char a = 'a', b = 'b', *result;
+	Node_ptr new_node3;
+	list_ptr = &list;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	result = deleteElementAt(list_ptr,0);
+	assert(*result==a);
+	assert(list_ptr->head == new_node2);
+	assert(list_ptr->tail == new_node2);
+	assert(list_ptr->count == 1);
+	free(new_node);
+	free(new_node2);
+}
+
+void test_deleteElementAt_should_set_head_tail_NULL_and_count_0_if_index_of_only_node_is_passed(){
+	char a = 'a', *result;
+	Node_ptr new_node3;
+	list_ptr = &list;
+	data = &a;
+	new_node = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	result = deleteElementAt(list_ptr,0);
+	assert(*result==a);
+	assert(list_ptr->head == NULL);
+	assert(list_ptr->tail == NULL);
+	assert(list_ptr->count == 0);
+	free(new_node);
+}
+
+void test_deleteElementAt_should_set_previous_node_as_tail_in_list_if_last_index_is_passed(){
+	float a = 11.99, b = 99.324513, *result;
+	Node_ptr new_node3;
+	list_ptr = &list;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	list = createList();
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	result = deleteElementAt(list_ptr,1);
+	assert(*result==b);
+	assert(list_ptr->head == new_node);
+	assert(list_ptr->tail == new_node);
+	assert(list_ptr->count == 1);
+	free(new_node);
+	free(new_node2);
+}

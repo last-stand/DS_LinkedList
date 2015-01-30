@@ -73,3 +73,57 @@ int indexOf(LinkedList list, void *element){
 	}
 	return -1;
 };
+
+void* deleteHead(LinkedList *list, int index){
+	Node_ptr walker = list->head;
+	void* data = walker->data;
+	(list->head == list->tail) && (list->tail = NULL);
+	list->head = walker->next;
+	list->count -= 1;
+	return data;
+}
+
+void *deleteTail(LinkedList *list, int index){
+	int counter;
+	void* data;
+	Node_ptr walker = list->head, previous;
+	for(counter=0; counter <= index; counter++){
+			(counter == index-1) && (previous = walker);
+			if(counter == index){
+				list->tail = previous;
+				previous->next = NULL;
+				list->count -= 1;
+				data = walker->data;
+			}
+			walker = walker->next;
+	}
+	return data;
+}
+
+void *deleteMiddle(LinkedList *list, int index){
+	int counter =0;
+	void *data;
+	Node_ptr walker = list->head, previous;
+	for(counter=0; counter<=index ;++counter){
+			(counter == index-1) && (previous = walker);
+			if(counter == index){
+				previous->next = walker->next;
+				list->count -= 1;
+				data = walker->data;
+			}
+			walker = walker->next;
+		}
+		return data;
+}
+
+void * deleteElementAt(LinkedList *list, int index){
+	Node_ptr walker = list->head, previous;
+	if(index > list->count-1)
+		return NULL;
+	if(index == 0)	return deleteHead(list,index);
+	if(index == list->count-1)
+		return deleteTail(list,index);
+	else
+		return deleteMiddle(list,index);
+	return NULL;
+};

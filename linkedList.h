@@ -22,3 +22,4 @@ typedef void (*Function)(void *data);
 void traverse(LinkedList, Function);
 void * getElementAt(LinkedList, int);
 int indexOf(LinkedList list, void *element);
+void * deleteElementAt(LinkedList *list, int index);
