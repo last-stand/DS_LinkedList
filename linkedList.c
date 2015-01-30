@@ -74,6 +74,19 @@ int indexOf(LinkedList list, void *element){
 	return -1;
 };
 
+Node_ptr getNodeAt(LinkedList *list, int index){
+	int counter;
+	Node_ptr walker = list->head;
+	if(index > list->count-1)
+		return NULL;
+	for(counter=0; counter<=index ;++counter){
+		if(counter == index)
+			return walker;
+		walker = walker->next;
+	}
+	return NULL;
+};
+
 void* deleteHead(LinkedList *list, int index){
 	Node_ptr walker = list->head;
 	void* data = walker->data;
@@ -84,36 +97,22 @@ void* deleteHead(LinkedList *list, int index){
 }
 
 void *deleteTail(LinkedList *list, int index){
-	int counter;
-	void* data;
-	Node_ptr walker = list->head, previous;
-	for(counter=0; counter <= index; counter++){
-			(counter == index-1) && (previous = walker);
-			if(counter == index){
-				list->tail = previous;
-				previous->next = NULL;
-				list->count -= 1;
-				data = walker->data;
-			}
-			walker = walker->next;
-	}
-	return data;
+	Node_ptr walker = list->head, previous_node, target_node;
+	previous_node = getNodeAt(list, index -1);
+	target_node = getNodeAt(list, index);
+	list->tail = previous_node;
+	previous_node->next = NULL;
+	list->count -= 1;
+	return target_node->data;
 }
 
 void *deleteMiddle(LinkedList *list, int index){
-	int counter;
-	void *data;
-	Node_ptr walker = list->head, previous;
-	for(counter=0; counter<=index ;++counter){
-			(counter == index-1) && (previous = walker);
-			if(counter == index){
-				previous->next = walker->next;
-				list->count -= 1;
-				data = walker->data;
-			}
-			walker = walker->next;
-	}
-	return data;
+	Node_ptr walker = list->head, previous_node, target_node;
+	previous_node = getNodeAt(list, index -1);
+	target_node = getNodeAt(list, index);
+	previous_node->next = target_node->next;
+	list->count -= 1;
+	return target_node->data;
 }
 
 void * deleteElementAt(LinkedList *list, int index){
