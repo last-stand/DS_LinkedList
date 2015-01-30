@@ -142,22 +142,19 @@ int asArray(LinkedList list, void **array){
 
 LinkedList * filter(LinkedList list, filterFunction function){
 	LinkedList_ptr result_list_ptr;
-	Node_ptr node_ptr;
+	Node_ptr node_ptr, walker;
 	LinkedList result_list = createList();
-	Node_ptr walker = list.head;
 	result_list_ptr = &result_list;
-	while(walker != NULL){
+	for(walker = list.head; walker != NULL; walker = walker->next){
 		if(function(walker->data)){
-			if(result_list.head==NULL){
+			if(result_list.head==NULL)
 				result_list.head = result_list.tail = create_node(walker->data);
-			}
 			else{
 				node_ptr = create_node(walker->data);
 				result_list.tail->next = node_ptr;  
 				result_list.tail =  node_ptr;
 			}
 		}
-		walker = walker->next;
 	}
 	return result_list_ptr;
 };
