@@ -23,4 +23,6 @@ void traverse(LinkedList, Function);
 void * getElementAt(LinkedList, int);
 int indexOf(LinkedList list, void *element);
 void * deleteElementAt(LinkedList *list, int index);
-int asArray(LinkedList list, void **);
+int asArray(LinkedList list, void **array);
+typedef int (*filterFunction)(void *data);
+LinkedList * filter(LinkedList, filterFunction);

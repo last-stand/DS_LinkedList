@@ -449,3 +449,34 @@ void test_asArray_populates_the_array_with_all_the_elements_of_the_list(){
 	assert(*(char*)array[0]==a);
 	assert(*(char*)array[1]==b);
 }
+
+int isEven(void *data){
+	return *(int*)data%2 == 0;
+};
+
+void test_filter_returns_reference_to_new_LinkedList_that_consists_only_of_references_of_even_data(){
+	int a=10, b=11, c=13, d=12;
+	Node_ptr new_node3, new_node4;
+	LinkedList list2;
+	LinkedList_ptr new_list;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	data = &c;
+	new_node3 = create_node(data);
+	data = &d;
+	new_node4 = create_node(data);
+
+	list = createList();
+	list2 = createList();
+	list_ptr = &list;
+	new_list = &list2;
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	add_to_list(list_ptr, new_node3);
+	add_to_list(list_ptr, new_node4);
+	new_list = filter(list, isEven);
+	assert(new_list->head->data == list_ptr->head->data);
+	assert(new_list->tail->data == list_ptr->tail->data);
+}
