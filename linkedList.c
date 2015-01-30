@@ -88,10 +88,9 @@ Node_ptr getNodeAt(LinkedList *list, int index){
 };
 
 void* deleteHead(LinkedList *list, int index){
-	Node_ptr walker = list->head;
-	void* data = walker->data;
+	void* data = list->head->data;
 	(list->head == list->tail) && (list->tail = NULL);
-	list->head = walker->next;
+	list->head = list->head->next;
 	list->count -= 1;
 	return data;
 }
