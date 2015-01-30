@@ -101,7 +101,7 @@ void *deleteTail(LinkedList *list, int index){
 }
 
 void *deleteMiddle(LinkedList *list, int index){
-	int counter =0;
+	int counter;
 	void *data;
 	Node_ptr walker = list->head, previous;
 	for(counter=0; counter<=index ;++counter){
@@ -112,20 +112,18 @@ void *deleteMiddle(LinkedList *list, int index){
 				data = walker->data;
 			}
 			walker = walker->next;
-		}
-		return data;
+	}
+	return data;
 }
 
 void * deleteElementAt(LinkedList *list, int index){
 	Node_ptr walker = list->head, previous;
-	if(index > list->count-1)
-		return NULL;
+	if(index > list->count-1) return NULL;
 	if(index == 0)	return deleteHead(list,index);
 	if(index == list->count-1)
 		return deleteTail(list,index);
 	else
 		return deleteMiddle(list,index);
-	return NULL;
 };
 
 int asArray(LinkedList list, void **array){
