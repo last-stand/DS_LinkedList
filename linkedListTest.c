@@ -413,3 +413,39 @@ void test_deleteElementAt_should_set_previous_node_as_tail_in_list_if_last_index
 	free(new_node);
 	free(new_node2);
 }
+
+void test_asArray_returns_0_if_linked_list_is_empty(){
+	void *array[2];
+	list = createList();
+	assertEqual(asArray(list,array), 0);
+}
+
+void test_asArray_returns_the_number_of_elements_added_to_the_array(){
+	void *array[2];
+	int a = 11, b = 99;
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	list = createList();
+	list_ptr = &list;
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	assertEqual(asArray(list,array), 2);
+}
+
+void test_asArray_populates_the_array_with_all_the_elements_of_the_list(){
+	void *array[2];
+	char a = 'a', b = 'b';
+	data = &a;
+	new_node = create_node(data);
+	data = &b;
+	new_node2 = create_node(data);
+	list = createList();
+	list_ptr = &list;
+	add_to_list(list_ptr, new_node);
+	add_to_list(list_ptr, new_node2);
+	assertEqual(asArray(list,array), 2);
+	assert(*(char*)array[0]==a);
+	assert(*(char*)array[1]==b);
+}

@@ -127,3 +127,15 @@ void * deleteElementAt(LinkedList *list, int index){
 		return deleteMiddle(list,index);
 	return NULL;
 };
+
+int asArray(LinkedList list, void **array){
+	Node_ptr walker = list.head;
+	int counter = 0;
+	if(list.count == 0) return 0;
+	while(walker != NULL){
+		 array[counter] = walker->data;
+		 walker = walker->next;
+		 counter++;
+	}
+	return counter;
+};
